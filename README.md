@@ -29,26 +29,65 @@ NPM: `npm install --save redux-thunk`
 To enable Redux Thunk:
 
 - inside your `store`, import `applyMiddleware` from `redux`
-- import the `redux-thunk` package
-- inside your `createStore` function, call `applyMiddleware()` and insert `ReduxThunk`
+- import the `redux-thunk` middleware
+- inside your `createStore` function, call `applyMiddleware()` and insert `ReduxThunk` as an argument
 ```js
 // store.js
-import { createStore, applyMiddleware /* <-- import `applyMiddleware` */ } from 'redux'
-import ReduxThunk from 'redux-thunk' /* <-- import package */
+
+// import `applyMiddleware` from redux
+import { createStore, applyMiddleware } from 'redux'
+// import `redux-thunk` middleware
+import ReduxThunk from 'redux-thunk'
 import reducer from './ducks/reducer'
 
 const store = createStore(
   reducer, 
-  // insert applyMiddleware and give ReduxThunk as an argument
+  // insert `applyMiddleware()` and give `ReduxThunk` as an argument
   applyMiddleware(ReduxThunk)
 )
 ```
 
-## Usage
+### Usage
 
 ```js
 // reducer.js
 import axios from 'axios'
 
+const ADD_ONE = 'ADD_ONE'
 
+const initialState = {
+  number: 0
+}
+
+// Action creator that returns an Object with an `action` type and a value of 1
+function addOne() {
+  // return your action object
+  return {
+    type: ADD_ONE
+    payload: 1
+  }
+}
+
+// ReduxThunk allows you to return a function that takes 
+// `dispatch` and `getState` functions as arguments
+function addOneAsync() {
+  return (dispatch, getState) => {
+    // asynchronous setTimeout function that will invoke `addOne` after 1 second 
+    setTimeout(() => {
+      // using the available `dispatch` function
+      dispatch(addOne())
+    }, 1000)
+  }
+}
+
+function addOneIfOdd() {
+  return (dispatch, getState) => {
+    // `getState()` will give you the current state so you can create a conditional
+    // statement inside your action creator
+    if(getState().number % 2 !== 0) {
+      return
+    }
+    dispatch(addOne())
+  }
+}
 ```
