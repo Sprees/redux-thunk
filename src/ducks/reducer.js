@@ -8,12 +8,8 @@ const initialState = {
   image: null
 }
 
-// axios.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://localhost:3000'
-
 export const doSomething = () => {
   return (dispatch, getState) => {
-    console.log('running')
-    console.log(getState())
     return dispatch({
       type: DO_IT,
       payload: 'Hello'
@@ -22,7 +18,7 @@ export const doSomething = () => {
 }
 
 export const getImage = () => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     axios.get('https://dog.ceo/api/breeds/image/random')
       .then(image => dispatch({
         type: GET_IMAGE,
