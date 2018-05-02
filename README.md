@@ -24,7 +24,6 @@ Another example of a `thunk` in React would be:
 ```
 ### Setup
 Yarn: `yarn add redux-thunk`  
-
 NPM: `npm install --save redux-thunk`
 
 To enable Redux Thunk:
