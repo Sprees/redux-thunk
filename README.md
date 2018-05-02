@@ -28,10 +28,11 @@ NPM: `npm install --save redux-thunk`
 
 To enable Redux Thunk:
 
-- inside your `store` import `applyMiddleware` from `redux`
+- inside your `store`, import `applyMiddleware` from `redux`
 - import the `redux-thunk` package
 - inside your `createStore` function, call `applyMiddleware()` and insert `ReduxThunk`
 ```js
+// store.js
 import { createStore, applyMiddleware /* <-- import `applyMiddleware` */ } from 'redux'
 import ReduxThunk from 'redux-thunk' /* <-- import package */
 import reducer from './ducks/reducer'
@@ -41,4 +42,13 @@ const store = createStore(
   // insert applyMiddleware and give ReduxThunk as an argument
   applyMiddleware(ReduxThunk)
 )
+```
+
+## Usage
+
+```js
+// reducer.js
+import axios from 'axios'
+
+
 ```
