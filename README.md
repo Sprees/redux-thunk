@@ -5,6 +5,7 @@
 
 ### What is a thunk?
 - A `thunk` is a function that wraps an expression to delay its evaluation
+> Example from [react-redux](https://github.com/gaearon/redux-thunk) documentation:
 ```js
 // Calculation of 1 + 2 is immediate
 let x = 1 + 2 
@@ -15,7 +16,6 @@ let x = 1 + 2
 // foo is a thunk!
 let foo = () => 1 + 2
 ```
-> Example from [react-redux](https://github.com/gaearon/redux-thunk) documentation
 
 Another example of a `thunk` in React would be:
 ```js
