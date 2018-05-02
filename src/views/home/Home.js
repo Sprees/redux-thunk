@@ -1,25 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { doSomething } from '../../ducks/reducer'
+import { doSomething, getImage } from '../../ducks/reducer'
 
 class Home extends Component {
-  constructor() {
-    super()
-    this.state = {
-
-    }
-  }
 
   componentDidMount() {
-    this.props.doSomething()
+    // this.props.doSomething()
+    this.props.getImage()
   }
 
   render() {
-    console.log(this.props)
+    const { image, greeting } = this.props.state
+    console.log(this.props.state)
+    // console.log(this.state)
     return (
-      <div>Home View</div>
+      <div>
+        <div>
+          { image ? <img src={ image } alt=""/> : null }
+        </div>
+        <div>
+          { greeting }
+        </div>
+      </div>
     )
   }
 }
 
-export default connect(state => ({ state }), { doSomething })(Home)
+export default connect(state => ({ state }), { doSomething, getImage })(Home)

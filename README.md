@@ -59,7 +59,8 @@ const initialState = {
   number: 0
 }
 
-// Action creator that returns an Object with an `action` type and a value of 1
+// Action creator that returns an Object with an `action` type and a payload of 1
+// this works perfectly without ReduxThunk
 function addOne() {
   // return your action object
   return {
@@ -68,13 +69,15 @@ function addOne() {
   }
 }
 
-// ReduxThunk allows you to return a function that takes 
-// `dispatch` and `getState` functions as arguments
+// ReduxThunk allows you to return a function and make asynchronous calls
 function addOneAsync() {
-  return (dispatch, getState) => {
-    // asynchronous setTimeout function that will invoke `addOne` after 1 second 
+  // return a function that accepts `dispatch` instead of an object
+  return (dispatch) => {
+    // setTimeout is inherently asynchronous
+    // this shows we can now call an asynchronous function inside our action creator
     setTimeout(() => {
-      // using the available `dispatch` function
+      // use the `dispatch` argument to dispatch our result to the reducer
+      // you can dispatch a sync or async action with `dispatch`
       dispatch(addOne())
     }, 1000)
   }
