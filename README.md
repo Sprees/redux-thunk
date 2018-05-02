@@ -23,7 +23,8 @@ Another example of a `thunk` in React would be:
 // onClick is a thunk!
 ```
 ### Setup
-Yarn: `yarn add redux-thunk`
+Yarn: `yarn add redux-thunk`  
+
 NPM: `npm install --save redux-thunk`
 
 To enable Redux Thunk:
